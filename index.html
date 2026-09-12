@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>محمد & مريم | Wedding Invitation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff8fa;
+  color: #603744;
+  font-family: "Amiri", serif;
+  overflow-x: hidden;
+}
+
+/* =========================
+   OPENING SCREEN
+========================= */
+
+#opening {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at 50% 35%, #fff, #fde8ef 55%, #f5d3df);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#opening.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.opening-content {
+  width: 90%;
+  max-width: 500px;
+  padding: 35px 20px;
+}
+
+.small-text {
+  font-size: 18px;
+  letter-spacing: 3px;
+  color: #a45d76;
+  margin-bottom: 20px;
+}
+
+.opening-names {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(58px, 16vw, 90px);
+  font-weight: 600;
+  color: #8f4965;
+  line-height: .9;
+  margin: 0;
+}
+
+.and {
+  display: block;
+  font-family: "Amiri", serif;
+  font-size: 32px;
+  color: #c17a93;
+  margin: 10px 0;
+}
+
+.date-opening {
+  font-size: 20px;
+  margin: 25px 0 30px;
+  color: #704251;
+}
+
+.open-btn {
+  position: relative;
+  border: 1px solid #c98ba0;
+  background: rgba(255,255,255,.65);
+  color: #82445c;
+  padding: 14px 38px;
+  border-radius: 50px;
+  font-family: "Amiri", serif;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(120,60,80,.12);
+  transition: .3s;
+}
+
+.open-btn:hover {
+  transform: translateY(-3px);
+  background: #fff;
+}
+
+.heart {
+  margin-top: 30px;
+  color: #bd6e89;
+  font-size: 25px;
+  animation: heartbeat 1.6s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* =========================
+   MAIN INVITATION
+========================= */
+
+#invitation {
+  display: none;
+}
+
+#invitation.show {
+  display: block;
+  animation: appear 1.5s ease;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero {
+  min-height: 100vh;
+  padding: 50px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card {
+  width: 100%;
+  max-width: 680px;
+  background: rgba(255,255,255,.93);
+  border: 1px solid #edc5d2;
+  box-shadow: 0 20px 70px rgba(100,45,65,.13);
+  border-radius: 30px;
+  padding: 35px 22px 45px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before,
+.card::after {
+  content: "♡";
+  position: absolute;
+  color: #e8bdcb;
+  font-size: 90px;
+  opacity: .25;
+}
+
+.card::before {
+  top: -30px;
+  right: -15px;
+}
+
+.card::after {
+  bottom: -40px;
+  left: -15px;
+}
+
+.flower {
+  color: #bd718b;
+  font-size: 27px;
+  letter-spacing: 8px;
+  margin-bottom: 12px;
+}
+
+.invited {
+  font-size: 19px;
+  color: #936174;
+  margin-bottom: 10px;
+}
+
+.names {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(55px, 14vw, 82px);
+  font-weight: 600;
+  color: #914b67;
+  line-height: .95;
+  margin: 5px 0;
+}
+
+.names span {
+  color: #c17b94;
+  font-family: "Amiri", serif;
+  font-size: .45em;
+  vertical-align: middle;
+}
+
+.message {
+  font-size: 21px;
+  line-height: 2;
+  margin: 20px auto 28px;
+  max-width: 560px;
+}
+
+/* =========================
+   PHOTO
+========================= */
+
+.photo-frame {
+  position: relative;
+  margin: 25px auto 35px;
+  max-width: 580px;
+}
+
+.photo-frame::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border: 1px solid #dca6b8;
+  border-radius: 25px;
+  z-index: 0;
+}
+
+.photo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: block;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* =========================
+   DATE DETAILS
+========================= */
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 30px 0;
+  color: #c68199;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  background: #e6bdca;
+  flex: 1;
+}
+
+.date {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 34px;
+  color: #8f4d66;
+  font-weight: 600;
+}
+
+.time {
+  font-size: 25px;
+  margin-top: 5px;
+}
+
+.venue {
+  margin-top: 25px;
+  padding: 22px;
+  border-radius: 20px;
+  background: #fff4f7;
+  border: 1px solid #f0d2dc;
+}
+
+.venue-title {
+  font-size: 23px;
+  color: #98536d;
+  margin-bottom: 7px;
+}
+
+.venue-name {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.venue-city {
+  font-size: 18px;
+  color: #906171;
+}
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-title {
+  font-size: 23px;
+  color: #98536d;
+  margin-top: 35px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin: 18px 0 30px;
+}
+
+.count-box {
+  min-width: 72px;
+  padding: 12px 8px;
+  background: #f9e2e9;
+  border-radius: 15px;
+}
+
+.count-number {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: #884761;
+}
+
+.count-label {
+  font-size: 14px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.action-btn {
+  text-decoration: none;
+  border: none;
+  background: #a85d79;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-family: "Amiri", serif;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 7px 20px rgba(130,65,90,.16);
+  transition: .3s;
+}
+
+.action-btn:hover {
+  transform: translateY(-3px);
+}
+
+.music-btn {
+  background: #f1c5d3;
+  color: #68394a;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.final-message {
+  margin-top: 40px;
+  font-size: 22px;
+  line-height: 1.9;
+  color: #8f5268;
+}
+
+.footer-hearts {
+  font-size: 25px;
+  letter-spacing: 7px;
+  color: #bd718b;
+  margin-top: 18px;
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.floating-heart {
+  position: fixed;
+  bottom: -30px;
+  color: #d28aa1;
+  opacity: .5;
+  pointer-events: none;
+  animation: floatUp 7s linear forwards;
+  z-index: 20;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0) rotate(0deg);
+    opacity: .5;
+  }
+  to {
+    transform: translateY(-110vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    padding: 30px 17px 40px;
+  }
+
+  .message {
+    font-size: 19px;
+  }
+
+  .date {
+    font-size: 30px;
+  }
+
+  .time {
+    font-size: 22px;
+  }
+
+  .count-box {
+    min-width: 65px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     OPENING
+========================= -->
+
+<section id="opening">
+
+  <div class="opening-content">
+
+    <div class="small-text">
+      WEDDING INVITATION
+    </div>
+
+    <h1 class="opening-names">
+      محمد
+      <span class="and">&</span>
+      مريم
+    </h1>
+
+    <div class="date-opening">
+      01 • 10 • 2026
+    </div>
+
+    <button class="open-btn" onclick="openInvitation()">
+      ✨ اضغط لفتح الدعوة ✨
+    </button>
+
+    <div class="heart">♡</div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     INVITATION
+========================= -->
+
+<main id="invitation">
+
+  <section class="hero">
+
+    <div class="card">
+
+      <div class="flower">
+        ✦ ♡ ✦
+      </div>
+
+      <div class="invited">
+        بكل الحب والسعادة
+        <br>
+        ندعوكم لمشاركتنا أجمل لحظات حياتنا
+      </div>
+
+      <h1 class="names">
+        محمد
+        <span>&</span>
+        مريم
+      </h1>
+
+      <p class="message">
+        فبوجود الأحبة تكتمل فرحتنا،
+        ويسعدنا أن تكونوا معنا
+        في بداية فصل جديد من حكايتنا.
+      </p>
+
+
+      <!-- PHOTO -->
+
+      <div class="photo-frame">
+        <img
+          src="photo.jpg"
+          alt="محمد ومريم"
+          class="photo"
+        >
+      </div>
+
+
+      <!-- DATE -->
+
+      <div class="divider">
+        <span>♡</span>
+      </div>
+
+      <div class="date">
+        الخميس
+        <br>
+        1 أكتوبر 2026
+      </div>
+
+      <div class="time">
+        🕖 الساعة 7:00 مساءً
+      </div>
+
+
+      <!-- VENUE -->
+
+      <div class="venue">
+
+        <div class="venue-title">
+          📍 مكان الاحتفال
+        </div>
+
+        <div class="venue-name">
+          قاعة لادونا - دار المركبات
+        </div>
+
+        <div class="venue-city">
+          القاهرة
+        </div>
+
+      </div>
+
+
+      <!-- COUNTDOWN -->
+
+      <div class="countdown-title">
+        لم يتبقَ على يومنا الكبير سوى...
+      </div>
+
+      <div class="countdown">
+
+        <div class="count-box">
+          <span class="count-number" id="days">0</span>
+          <span class="count-label">يوم</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="hours">0</span>
+          <span class="count-label">ساعة</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="minutes">0</span>
+          <span class="count-label">دقيقة</span>
+        </div>
+
+        <div class="count-box">
+          <span class="count-number" id="seconds">0</span>
+          <span class="count-label">ثانية</span>
+        </div>
+
+      </div>
+
+
+      <!-- BUTTONS -->
+
+      <div class="buttons">
+
+        <a
+          class="action-btn"
+          href="https://www.google.com/maps/search/?api=1&query=قاعة+لادونا+دار+المركبات+القاهرة"
+          target="_blank"
+        >
+          📍 موقع القاعة
+        </a>
+
+        <button
+          class="action-btn music-btn"
+          id="musicButton"
+          onclick="toggleMusic()"
+        >
+          🎵 إيقاف الموسيقى
+        </button>
+
+      </div>
+
+
+      <div class="final-message">
+        وجودكم معنا هو أجمل ما نتمنى 🤍
+        <br>
+        نتمنى أن تشاركونا فرحتنا
+      </div>
+
+      <div class="footer-hearts">
+        ♡ ♡ ♡
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- MUSIC -->
+
+<audio id="music" loop preload="auto">
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+
+<script>
+
+/* =========================
+   OPEN INVITATION + MUSIC
+========================= */
+
+function openInvitation() {
+
+  const opening = document.getElementById("opening");
+  const invitation = document.getElementById("invitation");
+  const music = document.getElementById("music");
+
+  opening.classList.add("hide");
+
+  invitation.classList.add("show");
+
+  /*
+    تشغيل الأغنية هنا لأن المستخدم ضغط على الزر.
+    ده يسمح للمتصفح بتشغيل الصوت.
+  */
+  music.play().catch(function(error) {
+    console.log("Music playback was blocked:", error);
+  });
+
+  document.getElementById("musicButton").textContent =
+    "⏸ إيقاف الموسيقى";
+
+  createHearts();
+}
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+function toggleMusic() {
+
+  const music = document.getElementById("music");
+  const button = document.getElementById("musicButton");
+
+  if (music.paused) {
+
+    music.play();
+
+    button.textContent = "⏸ إيقاف الموسيقى";
+
+  } else {
+
+    music.pause();
+
+    button.textContent = "🎵 تشغيل الموسيقى";
+
+  }
+
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+const weddingDate =
+  new Date("2026-10-01T19:00:00+03:00").getTime();
+
+function updateCountdown() {
+
+  const now = new Date().getTime();
+
+  const distance = weddingDate - now;
+
+  if (distance <= 0) {
+
+    document.getElementById("days").textContent = "0";
+    document.getElementById("hours").textContent = "0";
+    document.getElementById("minutes").textContent = "0";
+    document.getElementById("seconds").textContent = "0";
+
+    return;
+  }
+
+  const days =
+    Math.floor(distance / (1000 * 60 * 60 * 24));
+
+  const hours =
+    Math.floor((distance / (1000 * 60 * 60)) % 24);
+
+  const minutes =
+    Math.floor((distance / (1000 * 60)) % 60);
+
+  const seconds =
+    Math.floor((distance / 1000) % 60);
+
+  document.getElementById("days").textContent = days;
+  document.getElementById("hours").textContent = hours;
+  document.getElementById("minutes").textContent = minutes;
+  document.getElementById("seconds").textContent = seconds;
+}
+
+updateCountdown();
+
+setInterval(updateCountdown, 1000);
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHeart() {
+
+  const heart = document.createElement("div");
+
+  heart.className = "floating-heart";
+
+  heart.innerHTML = Math.random() > .5 ? "♡" : "♥";
+
+  heart.style.left =
+    Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (12 + Math.random() * 16) + "px";
+
+  heart.style.animationDuration =
+    (5 + Math.random() * 4) + "s";
+
+  document.body.appendChild(heart);
+
+  setTimeout(function() {
+    heart.remove();
+  }, 9000);
+}
+
+function createHearts() {
+
+  setInterval(function() {
+    createHeart();
+  }, 1200);
+
+}
+
+</script>
+
+</body>
+</html>
